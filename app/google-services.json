@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "480858228324",
+    "firebase_url": "https://fierychat.firebaseio.com",
+    "project_id": "fierychat",
+    "storage_bucket": "fierychat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480858228324:android:23dd2b3e93cf17cf",
+        "android_client_info": {
+          "package_name": "project.mycloud.com.fierychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480858228324-09sma1qorc0t7ufkmk2neu0k2dvhlkf8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.mycloud.com.fierychat",
+            "certificate_hash": "098DEEC1C378CACCE128EFB51E7781FE3DB48C2B"
+          }
+        },
+        {
+          "client_id": "480858228324-pgeko80bc477v195d3srph7434a7vdir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzGhJdRAWkluZVMcuySLNGzovHYZhh-hw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480858228324-pgeko80bc477v195d3srph7434a7vdir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
