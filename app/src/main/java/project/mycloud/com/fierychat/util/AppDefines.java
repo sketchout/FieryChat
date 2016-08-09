@@ -11,4 +11,5 @@ public class AppDefines {
 
     // image constants
     public static final int MAX_IMAGE_WIDTH = 400;
+    public static final int MAX_ROOMS_TO_SHOW = 100;
 }

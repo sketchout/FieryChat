@@ -14,6 +14,7 @@ import com.google.firebase.storage.StorageReference;
 
 import project.mycloud.com.fierychat.R;
 import project.mycloud.com.fierychat.model.ChatModel;
+import project.mycloud.com.fierychat.model.ChatRoomModel;
 import project.mycloud.com.fierychat.model.UserModel;
 import project.mycloud.com.fierychat.util.EndPoints;
 
@@ -34,38 +35,48 @@ public class BaseActivity extends AppCompatActivity {
     protected GoogleApiClient mGoogleApiClient;
 
     // method
-    protected FirebaseAuth getFbAuth() {
+    protected FirebaseAuth _getFbAuth() {
         if ( mFbAuth == null ) {
             mFbAuth = FirebaseAuth.getInstance();
         }
         return mFbAuth;
     }
-    protected FirebaseUser getFbUser() {
+    protected FirebaseUser _getFbUser() {
         if ( mFbUser == null ) {
-            mFbUser = getFbAuth().getCurrentUser();
+            mFbUser = _getFbAuth().getCurrentUser();
         }
         return mFbUser;
     }
 
-    protected UserModel getUserModel() {
+    protected UserModel _getUserModel() {
         return new UserModel(
-                getFbUser().getDisplayName(),           // name
-                getFbUser().getPhotoUrl().toString(),   // photo url
-                getFbUser().getUid() );                 // uid
+                _getFbUser().getDisplayName(),           // name
+                _getFbUser().getPhotoUrl().toString(),   // photo url
+                _getFbUser().getUid() );                 // uid
     }
 
-    protected void pushChat(String chatKey, ChatModel chatModel) {
-
-        getFbDatabaseRef().child(chatKey).push().setValue(chatModel);
+    protected void _pushChat(String chatKey, ChatModel chatModel) {
+        FirebaseDatabase.getInstance().getReference(chatKey).push().setValue(chatModel);
     }
 
-    protected DatabaseReference getFbDatabaseRef() {
+    protected void _pushRoom(String chatKey, ChatRoomModel crm) {
+        FirebaseDatabase.getInstance().getReference(chatKey).push().setValue(crm);
+    }
+
+//    protected DatabaseReference _getFbDatabaseRef() {
+//        if ( mFbDbRef == null ) {
+//            mFbDbRef = FirebaseDatabase.getInstance().getReference();
+//        }
+//        return mFbDbRef;
+//    }
+
+    protected DatabaseReference _getFbDatabaseRef(String key) {
         if ( mFbDbRef == null ) {
-            mFbDbRef = FirebaseDatabase.getInstance().getReference();
+            mFbDbRef = FirebaseDatabase.getInstance().getReference(key);
         }
         return mFbDbRef;
     }
-    protected StorageReference getFbStorageRef() {
+    protected StorageReference _getFbStorageRef() {
         if ( mFbStorage == null ) {
             mFbStorage = FirebaseStorage.getInstance();
         }
@@ -76,7 +87,7 @@ public class BaseActivity extends AppCompatActivity {
     // dialog progress
     private ProgressDialog mProgressDialog;
 
-    protected void showProgressDialog() {
+    protected void _showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
             //mProgressDialog.setCancelable(false);
@@ -86,7 +97,7 @@ public class BaseActivity extends AppCompatActivity {
         mProgressDialog.show();
     }
 
-    protected void showProgrssDialogMessage(String message) {
+    protected void _showProgrssDialogMessage(String message) {
 
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
@@ -96,14 +107,14 @@ public class BaseActivity extends AppCompatActivity {
         mProgressDialog.show();
     }
 
-    protected void hideProgressDialog() {
+    protected void _hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
     }
 
     // alert
-    protected void showAlert(String title,String message) {
+    protected void _showAlert(String title, String message) {
         // Authenticated failed with error firebaseError
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(this);

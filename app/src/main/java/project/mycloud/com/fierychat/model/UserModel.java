@@ -41,4 +41,12 @@ public class UserModel {
     public void setPhoto_profile(String photo_profile) {
         this.photo_profile = photo_profile;
     }
+
+    @Override
+    public String toString() {
+        //return super.toString();
+        return name+","
+                + id+","
+                + photo_profile+"," ;
+    }
 }

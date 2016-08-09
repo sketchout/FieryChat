@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import project.mycloud.com.fierychat.R;
 import project.mycloud.com.fierychat.util.CommonUtil;
-
+import project.mycloud.com.fierychat.util.Network;
 
 
 /**
@@ -53,29 +53,32 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if( !CommonUtil.verifyConnection(this) ) {
+        if( !Network.isNormal(this) ) {
             CommonUtil.initToast(this,"Please try again later !");
             finish();
+        } else {
+
+            mSignInButton =(SignInButton)findViewById(R.id.button_sign_in);
+            mSignInButton.setOnClickListener(this);
+
+            GoogleSignInOptions gso =
+                    new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestIdToken(getString(R.string.default_web_client_id))
+                            .requestEmail()
+                            .build();
+
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+
+            // Initialize FirebaseAuth
+            mFirebaseAuth = FirebaseAuth.getInstance();
+
+            Log.d(TAG,"Login end");
+
         }
 
-        mSignInButton =(SignInButton)findViewById(R.id.button_sign_in);
-        mSignInButton.setOnClickListener(this);
-
-        GoogleSignInOptions gso =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        // Initialize FirebaseAuth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
-        Log.d(TAG,"Login end");
     }
 
     @Override

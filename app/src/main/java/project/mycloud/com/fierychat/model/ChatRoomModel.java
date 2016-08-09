@@ -19,7 +19,7 @@ public class ChatRoomModel {
     private String timeStamp;
     private String lastMessage;
 
-    private UserModel ownerModel;
+    private UserModel userModel;
 
     // Method
     public String getId() {
@@ -55,4 +55,20 @@ public class ChatRoomModel {
     }
 
 
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
+
+    @Override
+    public String toString() {
+        //return super.toString();
+        return title+","
+                + timeStamp+","
+                + id+","
+                + userModel.toString()+"," ;
+    }
 }

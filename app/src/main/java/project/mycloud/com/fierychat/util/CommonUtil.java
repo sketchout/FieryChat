@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
@@ -20,16 +22,6 @@ public class CommonUtil {
 
     public static void initToast(Context c, String message) {
         Toast.makeText(c, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public static boolean verifyConnection(Context c) {
-        boolean connected;
-        ConnectivityManager conMgr =
-                (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
-        connected = conMgr.getActiveNetworkInfo() != null
-                && conMgr.getActiveNetworkInfo().isAvailable()
-                && conMgr.getActiveNetworkInfo().isConnected();
-        return connected;
     }
 
     public static String local(String latitudeFinal, String longitudeFinal) {
@@ -101,4 +93,6 @@ public class CommonUtil {
         bitmap.compress( Bitmap.CompressFormat.JPEG, 100, baos );
         return baos.toByteArray();
     }
+
+
 }
