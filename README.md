@@ -34,6 +34,14 @@
   6 | RoomInfoModel
   7 | UserModel
 
+* External Dependencies
+
+  No | List
+  --- | --- 
+  1 | compile 'com.github.bumptech.glide:glide:3.7.0'
+  2 | compile 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
+  3 | compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
+  4 | compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
  
  
