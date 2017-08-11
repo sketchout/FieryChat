@@ -6,7 +6,7 @@
 
 1) Adapter
 
-  # | List
+  No | List
   --- | --- 
   1 | ArrayAdapterWithIcon
   2 | RoomAdapter
